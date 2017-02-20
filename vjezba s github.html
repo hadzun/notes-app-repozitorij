@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unos Biljeski</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+      <!-- COMMENTS -->
+      <form name="form">
+        biljeska: <input type="text" name="biljeska"> <br>
+        <button name="button" type="submit">Unesi</button>
+      </form>
+      <ul id="comment-list"></ul>
+
+      <script>
+// 1. kreiraj niz gdje ćemo čuvati naše bilješke
+//elementi niza ce biti objekti(bitno!!!)
+var notes = [];
+var completedNotes = [];
+
+//2.funkcija za dodavanje novih biljeski
+
+function addNote(note){             //note je objekat, plejsholder i pušaš ga na stek
+notes.push(note);
+}
+
+//3 funkcija za brisanje biljeske
+
+function deleteNote(index) {
+                                     //splice provjeri sta radi, odsjeca nesta ali VRACA NIZ!!!zato stavlja pop
+
+    return notes.splice(index, 1).pop();// nazvo varijablu deleted pa se zbunimso
+}
+
+//4 markirati kao gotovo
+function markAsComplete(index) {
+    var completed = deleteNote(index);
+    completedNotes.push(completed);
+
+}
+
+//5 sortiranje po brojevima
+
+function sortByImportance() {
+return  notes.sort(function(a, b) {
+return a.important - b.important; //a-b, od manjeg ka vecem! sort tako radi
+});
+// return sortedNotes; mozes i ovo al more i direkt vratit jer se funkcija izvrsava
+}
+function sortByAge() {
+return  notes.sort(function(a, b) {
+return a.index - b.index; //a-b, od manjeg ka vecem! sort tako radi
+});
+
+}
+
+
+
+var biljeska = {
+index: 0,
+title: "Kupi mlijeko",
+description: "Meggle buraz",
+important:1
+
+}
+var drugaBiljeska = {
+    index: 2,
+title: "Kupi hljeb",
+description: "Klas",
+important:2
+
+}
+
+var trecaBiljeska = {
+    index: 3,
+title: "Kupi meso",
+description: "Mujanic",
+important:3
+
+}
+
+addNote(biljeska);
+addNote(drugaBiljeska);
+addNote(trecaBiljeska);
+
+var notes = sortByImportance();
+console.log(notes);
+console.log(completedNotes);
+
+
+
+
+      </script>
+
+
+
+
+      <br>
+<hr>
